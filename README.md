@@ -1,4 +1,4 @@
-# LeetApps — leetapps.org
+# LeetApps — leetapp.org
 
 One-page website for **LeetApps**, an AI apps & games development studio.
 
@@ -16,7 +16,7 @@ assets/css/style.css    styles
 assets/js/i18n.js       translations — edit copy here, one block per language
 assets/js/main.js       language switcher, animations, contact form (mailto)
 assets/img/             logo.svg, og.png (social share image), icon-180.png
-CNAME                   leetapps.org
+CNAME                   www.leetapp.org
 ```
 
 Run locally: `python3 -m http.server` and open http://localhost:8000.
@@ -25,12 +25,12 @@ Run locally: `python3 -m http.server` and open http://localhost:8000.
 
 1. Repo **Settings → Pages**
 2. **Source:** Deploy from a branch → Branch `main`, folder `/ (root)` → Save
-3. **Custom domain:** `leetapps.org` → Save (already set by the `CNAME` file)
+3. **Custom domain:** `www.leetapp.org` → Save (already set by the `CNAME` file)
 4. When the DNS check passes, tick **Enforce HTTPS** (the certificate can take up to ~1 hour)
 
 ## DNS on Namecheap
 
-Namecheap → **Domain List** → `leetapps.org` → **Manage** → **Advanced DNS**.
+Namecheap → **Domain List** → `leetapp.org` → **Manage** → **Advanced DNS**.
 
 First delete the default records Namecheap adds (the `URL Redirect Record` for `@` and the
 `CNAME` record for `www` pointing to `parkingpage.namecheap.com`). Then add:
@@ -56,8 +56,8 @@ Namecheap. This prevents anyone else from claiming the domain on GitHub Pages.
 Check propagation:
 
 ```
-dig leetapps.org +short        # should list the four 185.199.x.153 addresses
-dig www.leetapps.org +short    # should show airmig.github.io
+dig leetapp.org +short        # should list the four 185.199.x.153 addresses
+dig www.leetapp.org +short    # should show airmig.github.io
 ```
 
 ## Contact email

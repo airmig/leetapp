@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://leetapps.org/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://leetapps.org/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://leetapps.org/?lang=fr"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://leetapps.org/?lang=it"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://leetapps.org/?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://leetapps.org/?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://leetapps.org/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://leetapps.org/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://leetapps.org/?lang=ja"/>
+    <loc>https://www.leetapp.org/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.leetapp.org/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.leetapp.org/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.leetapp.org/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.leetapp.org/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.leetapp.org/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.leetapp.org/?lang=ko"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.leetapp.org/?lang=zh"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.leetapp.org/?lang=ja"/>
   </url>
 </urlset>
