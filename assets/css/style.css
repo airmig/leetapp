@@ -396,6 +396,11 @@ model-viewer { width: 100%; height: 100%; background: transparent; --poster-colo
 }
 .form input:focus, .form textarea:focus { border-color: rgba(139,92,255,.8); box-shadow: 0 0 0 4px rgba(139,92,255,.18); }
 .form .invalid { border-color: #ff6b8a; }
+.form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form button[disabled] { opacity: .6; cursor: progress; }
+.form-status { margin: 0; padding: 12px 14px; border-radius: 12px; font-size: 14px; border: 1px solid var(--line-2); background: rgba(255,255,255,.04); }
+.form-status.ok { border-color: rgba(182,255,60,.45); background: rgba(182,255,60,.08); color: #e4ffb8; }
+.form-status.err { border-color: rgba(255,107,138,.5); background: rgba(255,107,138,.08); color: #ffc2cf; }
 
 /* Footer */
 .footer { padding: 40px 0 50px; border-top: 1px solid var(--line); }

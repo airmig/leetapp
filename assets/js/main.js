@@ -179,20 +179,41 @@
     }
   }
 
-  /* ---------- Contact form (mailto) ---------- */
+  /* ---------- Contact form (FormSubmit, same service as sociedadmyd.com) ---------- */
+  // Sends in the background and shows the result inline; without JS the form still posts normally.
   var form = document.getElementById("contact-form");
+  var formStatus = document.getElementById("form-status");
+  function showStatus(key, kind) {
+    var t = dict[current] || dict.en;
+    formStatus.textContent = t[key];
+    formStatus.className = "form-status " + kind;
+    formStatus.hidden = false;
+  }
+  if (new URLSearchParams(location.search).get("sent") === "1") showStatus("cta.ok", "ok");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var ok = true;
-    form.querySelectorAll("input, textarea").forEach(function (f) {
+    form.querySelectorAll("input:not([type=hidden]):not(.hp), textarea").forEach(function (f) {
       var valid = f.value.trim() !== "" && (f.type !== "email" || /.+@.+\..+/.test(f.value));
       f.classList.toggle("invalid", !valid);
       if (!valid) ok = false;
     });
     if (!ok) return;
-    var t = dict[current] || dict.en;
-    var body = form.message.value + "\n\n— " + form.name.value + " <" + form.email.value + ">";
-    location.href = "mailto:airmig@gmail.com?subject=" + encodeURIComponent(t["cta.subject"]) + "&body=" + encodeURIComponent(body);
+    var data = new FormData(form);
+    data.set("_subject", (dict[current] || dict.en)["cta.subject"] + " - LeetApp");
+    data.set("Language", current);
+    var btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    showStatus("cta.sending", "pending");
+    fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+      method: "POST", headers: { Accept: "application/json" }, body: data
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      if (String(res.success) !== "true") throw new Error(res.message || "failed");
+      form.reset();
+      showStatus("cta.ok", "ok");
+    }).catch(function () {
+      showStatus("cta.err", "err");
+    }).then(function () { btn.disabled = false; });
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
