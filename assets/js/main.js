@@ -144,7 +144,7 @@
     if (!ok) return;
     var t = dict[current] || dict.en;
     var body = form.message.value + "\n\n— " + form.name.value + " <" + form.email.value + ">";
-    location.href = "mailto:hello@leetapps.org?subject=" + encodeURIComponent(t["cta.subject"]) + "&body=" + encodeURIComponent(body);
+    location.href = "mailto:airmig@gmail.com?subject=" + encodeURIComponent(t["cta.subject"]) + "&body=" + encodeURIComponent(body);
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();

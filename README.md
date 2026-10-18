@@ -62,6 +62,5 @@ dig www.leetapps.org +short    # should show airmig.github.io
 
 ## Contact email
 
-The contact form opens the visitor's mail app addressed to `hello@leetapps.org`.
-Set that mailbox up (e.g. Namecheap Private Email or email forwarding under
-**Domain → Redirect Email**), or change the address in `index.html` and `assets/js/main.js`.
+The contact form opens the visitor's mail app addressed to `airmig@gmail.com`.
+To change it, edit the address in `index.html` (the visible link) and `assets/js/main.js` (the form).
