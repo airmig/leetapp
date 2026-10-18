@@ -319,12 +319,17 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 
 /* Work: Marañito Online — 3D model over a crossfading gameplay slideshow */
 .w-online { background: #0e1a12; }
-.slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: slide 30s infinite; filter: saturate(1.1); }
-.slides img:nth-child(2) { animation-delay: 6s; } .slides img:nth-child(3) { animation-delay: 12s; }
-.slides img:nth-child(4) { animation-delay: 18s; } .slides img:nth-child(5) { animation-delay: 24s; }
-.slides img:first-child { opacity: 1; }
-@keyframes slide { 0% { opacity: 0; transform: scale(1.04); } 4%, 20% { opacity: 1; } 24%, 100% { opacity: 0; transform: scale(1.12); } }
-.w-online::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(7,7,13,.15) 30%, rgba(7,7,13,.75) 75%), linear-gradient(0deg, rgba(7,7,13,.55), transparent 40%); }
+/* Shared gameplay slideshow: main.js moves .on every few seconds; each slide slowly zooms while shown */
+.slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.03); transition: opacity 1.2s ease; filter: saturate(1.08); }
+.slides img.on { opacity: 1; animation: ken-burns 7s linear forwards; }
+.slides img.was { animation: ken-burns 7s linear forwards; }
+@keyframes ken-burns { from { transform: scale(1.03); } to { transform: scale(1.13) translateX(-1.5%); } }
+.w-shots::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.char-stage { position: absolute; z-index: 2; right: 3%; bottom: 4%; display: flex; align-items: flex-end; gap: 2px; }
+.char-stage::before { content: ""; position: absolute; left: -10%; right: -10%; bottom: -6px; height: 34px; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(139,92,255,.55), transparent 70%); filter: blur(3px); }
+.char-stage .sprite { position: relative; filter: drop-shadow(0 6px 5px rgba(0,0,0,.55)); }
+.w-online::after { background: linear-gradient(90deg, rgba(7,7,13,.15) 30%, rgba(7,7,13,.75) 75%), linear-gradient(0deg, rgba(7,7,13,.55), transparent 40%); }
 .online-stage { position: absolute; z-index: 2; right: 2%; top: 0; bottom: 0; width: 42%; }
 .online-stage::before { content: ""; position: absolute; left: 15%; right: 15%; bottom: 8%; height: 18%; border-radius: 50%;
   background: radial-gradient(ellipse, rgba(139,92,255,.55), transparent 70%); filter: blur(4px); }
@@ -333,41 +338,15 @@ model-viewer { width: 100%; height: 100%; background: transparent; --poster-colo
 .badge3d { position: absolute; z-index: 2; left: 16px; top: 16px; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #fff;
   background: linear-gradient(120deg, var(--violet), var(--blue)); box-shadow: 0 6px 20px rgba(139,92,255,.5); }
 
-/* Work: Marañito Saga — beat 'em up stage with both heroes running */
-.w-saga { background: #9cc7c9; }
-.sg-far { top: 0; bottom: 0; background-image: url("../work/paws/far.webp"); animation-duration: 120s; }
-.sg-mid { top: 0; bottom: 0; background-image: url("../work/paws/mid.webp"); animation-duration: 45s; }
-.sg-near { top: 0; bottom: 0; background-image: url("../work/paws/near.webp"); animation-duration: 16s; }
-.sg-fg { top: 0; bottom: 0; background-image: url("../work/paws/fg.webp"); animation-duration: 7s; z-index: 2; }
-.sg-onion { z-index: 1; left: 18%; bottom: 7%; }
-.sg-mara { z-index: 1; left: 48%; bottom: 4%; }
-.w-saga .sprite { filter: drop-shadow(0 6px 4px rgba(0,0,0,.4)); }
-
-/* Work: Marañito Wilds — turn-based battle */
-.w-wilds { background: linear-gradient(180deg, #2d1f4f, #5b3a6b 45%, #2b1d2f); }
-.wf-bg { position: absolute; inset: 0; background: url("../work/wilds/bg.webp") center 30% / cover no-repeat; }
-.wf-enemies .sprite, .wf-party .sprite { z-index: 1; filter: drop-shadow(0 5px 3px rgba(0,0,0,.5)); }
-.wf-hound { left: 6%; top: 34%; }
-.wf-raccoon { left: 24%; top: 20%; }
-.wf-onion { right: 26%; top: 14%; }
-.wf-mara { right: 12%; top: 30%; animation: sprite-play var(--dur) steps(var(--n)) infinite, mara-glow 4s ease-in-out infinite; }
-.wf-bella { right: 3%; top: 10%; }
-@keyframes mara-glow { 0%, 70%, 100% { filter: drop-shadow(0 5px 3px rgba(0,0,0,.5)); } 80% { filter: drop-shadow(0 0 16px #ffe66d) drop-shadow(0 0 30px #b6ff3c); } }
-.wf-flash { position: absolute; z-index: 3; left: 18%; top: 22%; padding: 6px 12px; border: 2px solid #fff; border-radius: 6px; background: #1d2c8f; color: #fff;
-  font-size: 13px; font-weight: 700; letter-spacing: .06em; box-shadow: 0 0 0 2px #0a0f3a; opacity: 0; animation: wf-flash 4s steps(1) infinite; }
-@keyframes wf-flash { 0%, 72% { opacity: 0; } 76%, 94% { opacity: 1; } }
-.wf-ui { position: absolute; z-index: 3; left: 10px; right: 10px; bottom: 10px; display: grid; grid-template-columns: .9fr 1.3fr; gap: 8px; font-size: 11px; color: #fff; }
-.wf-ui ul { margin: 0; padding: 8px 12px; list-style: none; border: 2px solid #e8ecff; border-radius: 6px;
-  background: linear-gradient(180deg, #2a3aa8, #141d6b); box-shadow: 0 0 0 2px #0a0f3a, 0 8px 20px rgba(0,0,0,.4); }
-.wf-cmd li { padding: 2px 0 2px 14px; position: relative; }
-.wf-cmd li.on::before { content: "▶"; position: absolute; left: 0; font-size: 9px; top: 4px; animation: blink 1s steps(2) infinite; }
-.wf-hp li { display: grid; grid-template-columns: 62px 1fr; align-items: center; gap: 8px; padding: 2px 0; }
-.wf-hp b { height: 6px; border-radius: 3px; background: rgba(0,0,0,.4); position: relative; overflow: hidden; }
-.wf-hp b::after { content: ""; position: absolute; inset: 0; width: calc(var(--hp) * 100%); background: linear-gradient(90deg, #4ade80, #b6ff3c); animation: hp-tick 8s ease-in-out infinite; }
-@keyframes hp-tick { 50% { width: calc(var(--hp) * 80%); } }
+/* Work: Marañito Saga and Wilds — shade the right side so the characters read */
+.w-saga::after, .w-wilds::after { background: linear-gradient(90deg, transparent 45%, rgba(7,7,13,.55)), linear-gradient(0deg, rgba(7,7,13,.5), transparent 35%); }
+.wf-mara { animation: sprite-play var(--dur) steps(var(--n)) infinite, mara-glow 4s ease-in-out infinite; }
+@keyframes mara-glow { 0%, 70%, 100% { filter: drop-shadow(0 6px 5px rgba(0,0,0,.55)); } 80% { filter: drop-shadow(0 0 14px #ffe66d) drop-shadow(0 0 26px #b6ff3c); } }
 
 /* Work: Sociedad M&D site scrolling inside a browser frame */
-.w-smyd { background: radial-gradient(circle at 50% 120%, rgba(34,197,94,.35), transparent 60%), linear-gradient(160deg, #0c1a2e, #08080f); display: flex; align-items: flex-end; justify-content: center; padding: 30px 24px 0; }
+.w-smyd { background: radial-gradient(circle at 50% 120%, rgba(34,197,94,.35), transparent 60%), linear-gradient(160deg, #0c1a2e, #08080f); }
+.w-plants { background: radial-gradient(circle at 30% 120%, rgba(182,255,60,.28), transparent 60%), linear-gradient(160deg, #0f2418, #08080f); }
+.w-site { display: flex; align-items: flex-end; justify-content: center; padding: 30px 24px 0; }
 .browser { width: 100%; height: 100%; border-radius: 12px 12px 0 0; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -10px rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.18); border-bottom: 0; display: flex; flex-direction: column; transition: transform .5s; }
 .work:hover .browser { transform: translateY(-6px); }
 .browser-bar { display: flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; background: #1b1b2a; flex-shrink: 0; }
@@ -461,7 +440,7 @@ model-viewer { width: 100%; height: 100%; background: transparent; --poster-colo
   .bento, .work-grid, .steps { grid-template-columns: 1fr; }
   .work-art { height: 280px; }
   .online-stage { width: 55%; }
-  .wf-ui { grid-template-columns: 1fr; } .wf-cmd { display: none; }
+  .char-stage { transform: scale(.72); transform-origin: bottom right; }
   .flerkin-run { transform-origin: bottom left; scale: .8; }
   .section { padding: 90px 0; }
   .card { padding: 24px; }

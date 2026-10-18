@@ -142,6 +142,22 @@
   sizeParallax();
   window.addEventListener("resize", sizeParallax);
 
+  /* ---------- Work: gameplay slideshows ---------- */
+  document.querySelectorAll(".slides").forEach(function (box, k) {
+    var imgs = box.querySelectorAll("img"), i = 0;
+    if (!imgs.length) return;
+    imgs[0].classList.add("on");
+    if (reduceMotion || imgs.length < 2) return;
+    setTimeout(function () {
+      setInterval(function () {
+        imgs.forEach(function (im) { im.classList.remove("was"); });
+        imgs[i].classList.replace("on", "was");
+        i = (i + 1) % imgs.length;
+        imgs[i].classList.add("on");
+      }, 4800);
+    }, k * 1300);
+  });
+
   /* ---------- Work: 3D model, loaded only when its card is near the viewport ---------- */
   var mv = document.getElementById("maranito3d");
   if (mv) {

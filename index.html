@@ -206,7 +206,7 @@
         <div class="work-grid">
           <!-- Marañito Online: rotating 3D model (glTF from the game) over gameplay screenshots -->
           <article class="work work-wide reveal">
-            <div class="work-art w-online">
+            <div class="work-art w-shots w-online">
               <div class="slides" aria-hidden="true">
                 <img src="assets/work/online/shot1.webp" alt="" loading="lazy">
                 <img src="assets/work/online/shot2.webp" alt="" loading="lazy">
@@ -229,15 +229,23 @@
               <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4 · Blender · Meshy AI</span></div>
             </div>
           </article>
-          <!-- Marañito Saga: stage parallax layers with Onion and Marañito run cycles -->
+          <!-- Marañito Saga: real gameplay slideshow with Onion and Marañito animated on top -->
           <article class="work reveal">
-            <div class="work-art w-saga" aria-hidden="true">
-              <div class="px sg-far"></div>
-              <div class="px sg-mid"></div>
-              <div class="px sg-near"></div>
-              <div class="sprite sg-onion" style="background-image:url(assets/work/paws/onion_run.webp);--fw:135px;--fh:120px;--n:33;--dur:2.75s"></div>
-              <div class="sprite sg-mara" style="background-image:url(assets/work/paws/maranito_run.webp);--fw:112px;--fh:120px;--n:12;--dur:1.00s"></div>
-              <div class="px sg-fg"></div>
+            <div class="work-art w-shots w-saga" aria-hidden="true">
+              <div class="slides">
+                <img src="assets/work/paws/shot1.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot2.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot3.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot4.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot5.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot6.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot7.webp" alt="" loading="lazy">
+                <img src="assets/work/paws/shot8.webp" alt="" loading="lazy">
+              </div>
+              <div class="char-stage">
+                <div class="sprite sg-onion" style="background-image:url(assets/work/paws/onion_idle.webp);--fw:118px;--fh:120px;--n:30;--dur:2.50s"></div>
+                <div class="sprite sg-mara" style="background-image:url(assets/work/paws/maranito_punch.webp);--fw:183px;--fh:120px;--n:9;--dur:0.75s"></div>
+              </div>
             </div>
             <div class="work-meta">
               <div class="work-top"><h3>Marañito Saga</h3><span class="tag tag-pink" data-i18n="pf.tag">2.5D beat 'em up</span></div>
@@ -263,27 +271,23 @@
               <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4 · GDScript</span></div>
             </div>
           </article>
-          <!-- Marañito Wilds: turn-based battle scene with the party's idle animations -->
-          <article class="work reveal">
-            <div class="work-art w-wilds" aria-hidden="true">
-              <div class="wf-bg"></div>
-              <div class="wf-enemies">
-                <div class="sprite wf-hound" style="background-image:url(assets/work/wilds/arc_hound_idle.webp);--fw:154px;--fh:77px;--n:8;--dur:0.99s"></div>
-                <div class="sprite wf-raccoon" style="background-image:url(assets/work/wilds/psyko_raccoon_idle.webp);--fw:108px;--fh:93px;--n:8;--dur:1.33s"></div>
+          <!-- Marañito Wilds: in-game captures with the party's idle animations on top -->
+          <article class="work work-wide reveal">
+            <div class="work-art w-shots w-wilds" aria-hidden="true">
+              <div class="slides">
+                <img src="assets/work/wilds/shot1.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot2.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot3.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot4.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot5.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot6.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot7.webp" alt="" loading="lazy">
+                <img src="assets/work/wilds/shot8.webp" alt="" loading="lazy">
               </div>
-              <div class="wf-party">
-                <div class="sprite wf-onion flip" style="background-image:url(assets/work/wilds/onion_idle.webp);--fw:102px;--fh:104px;--n:10;--dur:1.56s"></div>
-                <div class="sprite wf-mara flip" style="background-image:url(assets/work/wilds/maranito_idle.webp);--fw:72px;--fh:93px;--n:10;--dur:0.83s"></div>
-                <div class="sprite wf-bella flip" style="background-image:url(assets/work/wilds/bella_idle.webp);--fw:73px;--fh:92px;--n:10;--dur:1.30s"></div>
-              </div>
-              <div class="wf-flash mono">COMET CLAW!</div>
-              <div class="wf-ui mono">
-                <ul class="wf-cmd"><li class="on">Comet Claw</li><li>Star Pulse</li><li>Smash Hits</li><li>Combos</li></ul>
-                <ul class="wf-hp">
-                  <li><span>Onion</span><b style="--hp:.86"></b></li>
-                  <li><span>Marañito</span><b style="--hp:.64"></b></li>
-                  <li><span>Bella</span><b style="--hp:.92"></b></li>
-                </ul>
+              <div class="char-stage">
+                <div class="sprite wf-onion" style="background-image:url(assets/work/wilds/onion_idle.webp);--fw:102px;--fh:104px;--n:10;--dur:1.56s"></div>
+                <div class="sprite wf-mara" style="background-image:url(assets/work/wilds/maranito_idle.webp);--fw:80px;--fh:104px;--n:10;--dur:0.83s"></div>
+                <div class="sprite wf-bella" style="background-image:url(assets/work/wilds/bella_idle.webp);--fw:83px;--fh:104px;--n:10;--dur:1.30s"></div>
               </div>
             </div>
             <div class="work-meta">
@@ -293,9 +297,23 @@
               <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4.7</span></div>
             </div>
           </article>
+          <!-- Living Plant Archive: the real site scrolling inside a browser frame -->
+          <article class="work work-wide reveal">
+            <div class="work-art w-site w-plants" aria-hidden="true">
+              <div class="browser">
+                <div class="browser-bar"><span></span><span></span><span></span><em class="mono">plants · botanical archive</em></div>
+                <div class="browser-view"><img src="assets/work/plants/site.webp" alt="" width="640" height="2300" loading="lazy"></div>
+              </div>
+            </div>
+            <div class="work-meta">
+              <div class="work-top"><h3 data-i18n="pl.t">Living Plant Archive</h3><span class="tag tag-lime" data-i18n="pl.tag">Web app</span></div>
+              <p data-i18n="pl.d">A video-backed archive of a private plant collection: an interactive 3D origin globe, World Flora Online taxonomy, printable QR stakes for every pot and 15 languages.</p>
+              <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Globe.gl · Leaflet · Tailwind</span></div>
+            </div>
+          </article>
           <!-- Sociedad M&D: the live site scrolling inside a browser frame -->
           <article class="work reveal">
-            <div class="work-art w-smyd" aria-hidden="true">
+            <div class="work-art w-site w-smyd" aria-hidden="true">
               <div class="browser">
                 <div class="browser-bar"><span></span><span></span><span></span><em class="mono">sociedadmyd.com</em></div>
                 <div class="browser-view"><img src="assets/work/sociedadmyd/site.webp" alt="" width="640" height="2858" loading="lazy"></div>
