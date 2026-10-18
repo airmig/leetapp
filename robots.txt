@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://leetapps.org/sitemap.xml
