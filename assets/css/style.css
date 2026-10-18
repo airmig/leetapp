@@ -226,7 +226,7 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 .card-xl .card-body { padding: 26px 30px 32px; }
 .card-art { position: relative; height: 230px; overflow: hidden; border-bottom: 1px solid var(--line); }
 .card-icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line); margin-bottom: 22px; color: #dfe2fb; }
-.tag { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; font: 600 11px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+.tag { white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; font: 600 11px/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
 .tag-violet { color: #c4b5fd; background: rgba(139,92,255,.14); border: 1px solid rgba(139,92,255,.3); }
 .tag-lime { color: var(--lime); background: rgba(182,255,60,.1); border: 1px solid rgba(182,255,60,.25); }
 .tag-cyan { color: var(--cyan); background: rgba(34,211,238,.1); border: 1px solid rgba(34,211,238,.25); }
@@ -276,7 +276,7 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .work { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--bg-2); transition: transform .4s cubic-bezier(.2,.8,.2,1), border-color .3s; }
 .work:hover { transform: translateY(-6px); border-color: var(--line-2); }
-.work-art { position: relative; height: 280px; overflow: hidden; }
+.work-art { position: relative; height: 330px; overflow: hidden; }
 .work-meta { padding: 24px 26px 28px; }
 .work-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .work h3 { font-size: 24px; }
@@ -284,7 +284,6 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 
 /* Work: Flerkin parallax scene (layers + 24-frame run cycle from the game's assets) */
 .work-wide { grid-column: span 2; }
-.work-wide .work-art { height: 340px; }
 .w-flerkin { background: #0d2a2c; isolation: isolate; }
 .px { position: absolute; left: 0; right: 0; background-repeat: repeat-x; background-size: auto 100%; animation: px-scroll linear infinite; }
 .px-far { top: -8%; bottom: -8%; background-image: url("../work/flerkin/far_forest.webp"); animation-duration: 90s; }
@@ -312,8 +311,63 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 .fireflies i:nth-child(6) { left: 46%; top: 60%; animation-delay: -3s; }
 @keyframes firefly { 0%, 100% { transform: translate(0, 0); opacity: .2; } 30% { opacity: 1; } 50% { transform: translate(14px, -18px); opacity: .9; } 80% { opacity: .3; } }
 
+/* Sprite-sheet animator: one horizontal strip, frame size and count set inline */
+.sprite { position: absolute; width: var(--fw); height: var(--fh); background-repeat: no-repeat; background-size: calc(var(--fw) * var(--n)) 100%;
+  animation: sprite-play var(--dur) steps(var(--n)) infinite; }
+.sprite.flip { transform: scaleX(-1); }
+@keyframes sprite-play { from { background-position: 0 0; } to { background-position: calc(var(--fw) * var(--n) * -1) 0; } }
+
+/* Work: Marañito Online — 3D model over a crossfading gameplay slideshow */
+.w-online { background: #0e1a12; }
+.slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: slide 30s infinite; filter: saturate(1.1); }
+.slides img:nth-child(2) { animation-delay: 6s; } .slides img:nth-child(3) { animation-delay: 12s; }
+.slides img:nth-child(4) { animation-delay: 18s; } .slides img:nth-child(5) { animation-delay: 24s; }
+.slides img:first-child { opacity: 1; }
+@keyframes slide { 0% { opacity: 0; transform: scale(1.04); } 4%, 20% { opacity: 1; } 24%, 100% { opacity: 0; transform: scale(1.12); } }
+.w-online::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(7,7,13,.15) 30%, rgba(7,7,13,.75) 75%), linear-gradient(0deg, rgba(7,7,13,.55), transparent 40%); }
+.online-stage { position: absolute; z-index: 2; right: 2%; top: 0; bottom: 0; width: 42%; }
+.online-stage::before { content: ""; position: absolute; left: 15%; right: 15%; bottom: 8%; height: 18%; border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(139,92,255,.55), transparent 70%); filter: blur(4px); }
+model-viewer { width: 100%; height: 100%; background: transparent; --poster-color: transparent; --progress-bar-color: var(--violet); }
+.drag-hint { position: absolute; right: 14px; top: 14px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); white-space: nowrap; }
+.badge3d { position: absolute; z-index: 2; left: 16px; top: 16px; padding: 6px 10px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #fff;
+  background: linear-gradient(120deg, var(--violet), var(--blue)); box-shadow: 0 6px 20px rgba(139,92,255,.5); }
+
+/* Work: Marañito Saga — beat 'em up stage with both heroes running */
+.w-saga { background: #9cc7c9; }
+.sg-far { top: 0; bottom: 0; background-image: url("../work/paws/far.webp"); animation-duration: 120s; }
+.sg-mid { top: 0; bottom: 0; background-image: url("../work/paws/mid.webp"); animation-duration: 45s; }
+.sg-near { top: 0; bottom: 0; background-image: url("../work/paws/near.webp"); animation-duration: 16s; }
+.sg-fg { top: 0; bottom: 0; background-image: url("../work/paws/fg.webp"); animation-duration: 7s; z-index: 2; }
+.sg-onion { z-index: 1; left: 18%; bottom: 7%; }
+.sg-mara { z-index: 1; left: 48%; bottom: 4%; }
+.w-saga .sprite { filter: drop-shadow(0 6px 4px rgba(0,0,0,.4)); }
+
+/* Work: Marañito Wilds — turn-based battle */
+.w-wilds { background: linear-gradient(180deg, #2d1f4f, #5b3a6b 45%, #2b1d2f); }
+.wf-bg { position: absolute; inset: 0; background: url("../work/wilds/bg.webp") center 30% / cover no-repeat; }
+.wf-enemies .sprite, .wf-party .sprite { z-index: 1; filter: drop-shadow(0 5px 3px rgba(0,0,0,.5)); }
+.wf-hound { left: 6%; top: 34%; }
+.wf-raccoon { left: 24%; top: 20%; }
+.wf-onion { right: 26%; top: 14%; }
+.wf-mara { right: 12%; top: 30%; animation: sprite-play var(--dur) steps(var(--n)) infinite, mara-glow 4s ease-in-out infinite; }
+.wf-bella { right: 3%; top: 10%; }
+@keyframes mara-glow { 0%, 70%, 100% { filter: drop-shadow(0 5px 3px rgba(0,0,0,.5)); } 80% { filter: drop-shadow(0 0 16px #ffe66d) drop-shadow(0 0 30px #b6ff3c); } }
+.wf-flash { position: absolute; z-index: 3; left: 18%; top: 22%; padding: 6px 12px; border: 2px solid #fff; border-radius: 6px; background: #1d2c8f; color: #fff;
+  font-size: 13px; font-weight: 700; letter-spacing: .06em; box-shadow: 0 0 0 2px #0a0f3a; opacity: 0; animation: wf-flash 4s steps(1) infinite; }
+@keyframes wf-flash { 0%, 72% { opacity: 0; } 76%, 94% { opacity: 1; } }
+.wf-ui { position: absolute; z-index: 3; left: 10px; right: 10px; bottom: 10px; display: grid; grid-template-columns: .9fr 1.3fr; gap: 8px; font-size: 11px; color: #fff; }
+.wf-ui ul { margin: 0; padding: 8px 12px; list-style: none; border: 2px solid #e8ecff; border-radius: 6px;
+  background: linear-gradient(180deg, #2a3aa8, #141d6b); box-shadow: 0 0 0 2px #0a0f3a, 0 8px 20px rgba(0,0,0,.4); }
+.wf-cmd li { padding: 2px 0 2px 14px; position: relative; }
+.wf-cmd li.on::before { content: "▶"; position: absolute; left: 0; font-size: 9px; top: 4px; animation: blink 1s steps(2) infinite; }
+.wf-hp li { display: grid; grid-template-columns: 62px 1fr; align-items: center; gap: 8px; padding: 2px 0; }
+.wf-hp b { height: 6px; border-radius: 3px; background: rgba(0,0,0,.4); position: relative; overflow: hidden; }
+.wf-hp b::after { content: ""; position: absolute; inset: 0; width: calc(var(--hp) * 100%); background: linear-gradient(90deg, #4ade80, #b6ff3c); animation: hp-tick 8s ease-in-out infinite; }
+@keyframes hp-tick { 50% { width: calc(var(--hp) * 80%); } }
+
 /* Work: Sociedad M&D site scrolling inside a browser frame */
-.w-smyd { height: 340px; background: radial-gradient(circle at 50% 120%, rgba(34,197,94,.35), transparent 60%), linear-gradient(160deg, #0c1a2e, #08080f); display: flex; align-items: flex-end; justify-content: center; padding: 30px 24px 0; }
+.w-smyd { background: radial-gradient(circle at 50% 120%, rgba(34,197,94,.35), transparent 60%), linear-gradient(160deg, #0c1a2e, #08080f); display: flex; align-items: flex-end; justify-content: center; padding: 30px 24px 0; }
 .browser { width: 100%; height: 100%; border-radius: 12px 12px 0 0; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -10px rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.18); border-bottom: 0; display: flex; flex-direction: column; transition: transform .5s; }
 .work:hover .browser { transform: translateY(-6px); }
 .browser-bar { display: flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; background: #1b1b2a; flex-shrink: 0; }
@@ -324,6 +378,10 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 .browser-view img { display: block; width: 100%; height: auto; animation: site-scroll 26s ease-in-out infinite alternate; }
 @keyframes site-scroll { 0%, 8% { transform: translateY(0); } 92%, 100% { transform: translateY(calc(-100% + 240px)); } }
 
+.ai-chip { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 5px 10px; border-radius: 999px; font-size: 11px; letter-spacing: .04em;
+  color: #d8ccff; background: rgba(139,92,255,.12); border: 1px solid rgba(139,92,255,.32); }
+.ai-chip::before { content: "✦"; color: var(--cyan); }
+.status { white-space: nowrap; }
 .work-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
 .status { display: inline-flex; align-items: center; gap: 7px; font: 500 11px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(238,240,255,.6); }
 .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #febc2e; box-shadow: 0 0 8px #febc2e; }
@@ -401,7 +459,9 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
   .device { width: 300px; }
   .f-score { right: 0; top: 0; padding: 10px 12px; } .f-score b { font-size: 18px; } .f-model { left: 0; bottom: 4%; } .f-pad { right: 0; bottom: 18%; }
   .bento, .work-grid, .steps { grid-template-columns: 1fr; }
-  .work-wide .work-art, .w-smyd { height: 260px; }
+  .work-art { height: 280px; }
+  .online-stage { width: 55%; }
+  .wf-ui { grid-template-columns: 1fr; } .wf-cmd { display: none; }
   .flerkin-run { transform-origin: bottom left; scale: .8; }
   .section { padding: 90px 0; }
   .card { padding: 24px; }

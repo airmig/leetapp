@@ -189,7 +189,7 @@
             </div>
             <span class="tag tag-pink">04</span>
             <h3 data-i18n="s4.t">Product &amp; game design</h3>
-            <p data-i18n="s4.d">UX, UI, art direction and prototyping — we validate fast, then polish every pixel and every frame.</p>
+            <p data-i18n="s4.d">UX, UI, art direction with AI-generated art and animation, and prototyping — we validate fast, then polish every pixel and every frame.</p>
           </article>
         </div>
       </div>
@@ -204,8 +204,50 @@
           <p class="muted" data-i18n="work.sub">Games and products we design, build and ship.</p>
         </div>
         <div class="work-grid">
-          <!-- Flerkin: parallax scene built from the game's own layers and run-cycle sprite sheet -->
+          <!-- Marañito Online: rotating 3D model (glTF from the game) over gameplay screenshots -->
           <article class="work work-wide reveal">
+            <div class="work-art w-online">
+              <div class="slides" aria-hidden="true">
+                <img src="assets/work/online/shot1.webp" alt="" loading="lazy">
+                <img src="assets/work/online/shot2.webp" alt="" loading="lazy">
+                <img src="assets/work/online/shot3.webp" alt="" loading="lazy">
+                <img src="assets/work/online/shot4.webp" alt="" loading="lazy">
+                <img src="assets/work/online/shot5.webp" alt="" loading="lazy">
+              </div>
+              <div class="online-stage">
+                <model-viewer id="maranito3d" data-src="assets/work/online/maranito.glb" alt="Marañito 3D model"
+                  camera-controls disable-zoom disable-pan auto-rotate auto-rotate-delay="0" rotation-per-second="28deg"
+                  autoplay interaction-prompt="none" shadow-intensity="1" exposure="1.05" camera-orbit="20deg 78deg auto" field-of-view="26deg"></model-viewer>
+                <span class="drag-hint mono" data-i18n="on.drag">Drag to rotate</span>
+              </div>
+              <span class="badge3d mono" aria-hidden="true">3D</span>
+            </div>
+            <div class="work-meta">
+              <div class="work-top"><h3>Marañito Online</h3><span class="tag tag-violet" data-i18n="on.tag">3D game</span></div>
+              <p data-i18n="on.d">An online 3D action adventure through the Costa Rican cloud forest: create your cat, clear enemy-filled clearings and take on the Caracara boss.</p>
+              <span class="ai-chip mono" data-i18n="work.ai">AI-generated art &amp; animation</span>
+              <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4 · Blender · Meshy AI</span></div>
+            </div>
+          </article>
+          <!-- Marañito Saga: stage parallax layers with Onion and Marañito run cycles -->
+          <article class="work reveal">
+            <div class="work-art w-saga" aria-hidden="true">
+              <div class="px sg-far"></div>
+              <div class="px sg-mid"></div>
+              <div class="px sg-near"></div>
+              <div class="sprite sg-onion" style="background-image:url(assets/work/paws/onion_run.webp);--fw:135px;--fh:120px;--n:33;--dur:2.75s"></div>
+              <div class="sprite sg-mara" style="background-image:url(assets/work/paws/maranito_run.webp);--fw:112px;--fh:120px;--n:12;--dur:1.00s"></div>
+              <div class="px sg-fg"></div>
+            </div>
+            <div class="work-meta">
+              <div class="work-top"><h3>Marañito Saga</h3><span class="tag tag-pink" data-i18n="pf.tag">2.5D beat 'em up</span></div>
+              <p data-i18n="pf.d">A smash beat 'em up in the spirit of the 16-bit classics: ginger cats Onion and Marañito chase the alien cat Tess across five exoplanets to rescue ninja chef Bella.</p>
+              <span class="ai-chip mono" data-i18n="work.ai">AI-generated art &amp; animation</span>
+              <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4 · Google Flow · ElevenLabs</span></div>
+            </div>
+          </article>
+          <!-- Marañito (2D): parallax scene from the game's layers and run-cycle sprite sheet -->
+          <article class="work reveal">
             <div class="work-art w-flerkin" aria-hidden="true">
               <div class="px px-far"></div>
               <div class="px px-mid"></div>
@@ -215,9 +257,40 @@
               <div class="fireflies"><i></i><i></i><i></i><i></i><i></i><i></i></div>
             </div>
             <div class="work-meta">
-              <div class="work-top"><h3>Flerkin</h3><span class="tag tag-lime" data-i18n="fl.tag">2D game</span></div>
-              <p data-i18n="fl.d">A hand-painted Metroidvania starring a feline wayfarer — fluid combat, deep skill trees and a jungle world full of secrets. Built with Godot 4.</p>
+              <div class="work-top"><h3>Marañito</h3><span class="tag tag-lime" data-i18n="fl.tag">2D game</span></div>
+              <p data-i18n="fl.d">An AI hand-painted Metroidvania starring a feline wayfarer — fluid combat, deep skill trees and a jungle world full of secrets. Built with Godot 4.</p>
+              <span class="ai-chip mono" data-i18n="work.ai">AI-generated art &amp; animation</span>
               <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4 · GDScript</span></div>
+            </div>
+          </article>
+          <!-- Marañito Wilds: turn-based battle scene with the party's idle animations -->
+          <article class="work reveal">
+            <div class="work-art w-wilds" aria-hidden="true">
+              <div class="wf-bg"></div>
+              <div class="wf-enemies">
+                <div class="sprite wf-hound" style="background-image:url(assets/work/wilds/arc_hound_idle.webp);--fw:154px;--fh:77px;--n:8;--dur:0.99s"></div>
+                <div class="sprite wf-raccoon" style="background-image:url(assets/work/wilds/psyko_raccoon_idle.webp);--fw:108px;--fh:93px;--n:8;--dur:1.33s"></div>
+              </div>
+              <div class="wf-party">
+                <div class="sprite wf-onion flip" style="background-image:url(assets/work/wilds/onion_idle.webp);--fw:102px;--fh:104px;--n:10;--dur:1.56s"></div>
+                <div class="sprite wf-mara flip" style="background-image:url(assets/work/wilds/maranito_idle.webp);--fw:72px;--fh:93px;--n:10;--dur:0.83s"></div>
+                <div class="sprite wf-bella flip" style="background-image:url(assets/work/wilds/bella_idle.webp);--fw:73px;--fh:92px;--n:10;--dur:1.30s"></div>
+              </div>
+              <div class="wf-flash mono">COMET CLAW!</div>
+              <div class="wf-ui mono">
+                <ul class="wf-cmd"><li class="on">Comet Claw</li><li>Star Pulse</li><li>Smash Hits</li><li>Combos</li></ul>
+                <ul class="wf-hp">
+                  <li><span>Onion</span><b style="--hp:.86"></b></li>
+                  <li><span>Marañito</span><b style="--hp:.64"></b></li>
+                  <li><span>Bella</span><b style="--hp:.92"></b></li>
+                </ul>
+              </div>
+            </div>
+            <div class="work-meta">
+              <div class="work-top"><h3>Marañito Wilds</h3><span class="tag tag-cyan" data-i18n="wf.tag">JRPG</span></div>
+              <p data-i18n="wf.d">A 16-bit-style turn-based JRPG: Marañito, the glowing kitten found in a crater, turns out to be a Wayfarer, an ancient star-wandering cat. Party combos, techs and an AI hand-drawn world.</p>
+              <span class="ai-chip mono" data-i18n="work.ai">AI-generated art &amp; animation</span>
+              <div class="work-foot"><span class="status wip" data-i18n="work.wip">In development</span><span class="stack mono">Godot 4.7</span></div>
             </div>
           </article>
           <!-- Sociedad M&D: the live site scrolling inside a browser frame -->

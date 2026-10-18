@@ -16,7 +16,9 @@ assets/css/style.css    styles
 assets/js/i18n.js       translations — edit copy here, one block per language
 assets/js/main.js       language switcher, animations, contact form (mailto)
 assets/img/             logo.svg, og.png (social share image), icon-180.png
-assets/work/            project showcase assets (sprites, parallax layers, screenshots)
+assets/work/            project showcase assets: AI-generated sprites, parallax layers and screenshots
+                        from the game repos, plus the Marañito Online 3D model (posed, idle animation,
+                        compressed to ~1 MB; the 3D viewer loads model-viewer from Google's CDN on demand)
 CNAME                   www.leetapp.org
 ```
 

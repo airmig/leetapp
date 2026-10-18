@@ -142,6 +142,27 @@
   sizeParallax();
   window.addEventListener("resize", sizeParallax);
 
+  /* ---------- Work: 3D model, loaded only when its card is near the viewport ---------- */
+  var mv = document.getElementById("maranito3d");
+  if (mv) {
+    var loadModel = function () {
+      var s = document.createElement("script");
+      s.type = "module";
+      s.src = "https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js";
+      document.head.appendChild(s);
+      mv.setAttribute("src", mv.getAttribute("data-src"));
+      if (reduceMotion) mv.removeAttribute("auto-rotate");
+    };
+    if ("IntersectionObserver" in window) {
+      var mio = new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { mio.disconnect(); loadModel(); }
+      }, { rootMargin: "300px" });
+      mio.observe(mv);
+    } else {
+      loadModel();
+    }
+  }
+
   /* ---------- Contact form (mailto) ---------- */
   var form = document.getElementById("contact-form");
   form.addEventListener("submit", function (e) {
