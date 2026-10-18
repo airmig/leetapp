@@ -15,10 +15,11 @@ index.html              page markup (all text has data-i18n keys)
 assets/css/style.css    styles
 assets/js/i18n.js       translations — edit copy here, one block per language
 assets/js/main.js       language switcher, animations, contact form (mailto)
-assets/img/             logo.svg, og.jpg (link-preview image for social media), icon-180.png
+assets/img/             logo.svg, og.jpg / og-es.jpg (English / Spanish link-preview images), icon-180.png
 assets/work/            project showcase assets: AI-generated sprites, parallax layers and screenshots
                         from the game repos, plus the Marañito Online 3D model (posed, idle animation,
                         compressed to ~1 MB; the 3D viewer loads model-viewer from Google's CDN on demand)
+es/index.html           Spanish share link (leetapp.org/es/): Spanish link preview, opens the site in Spanish
 CNAME                   www.leetapp.org
 ```
 
