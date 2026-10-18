@@ -3,6 +3,7 @@
   <url>
     <loc>https://www.leetapp.org/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.leetapp.org/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.leetapp.org/?lang=es"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.leetapp.org/?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://www.leetapp.org/?lang=it"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://www.leetapp.org/?lang=pt"/>

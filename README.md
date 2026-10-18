@@ -1,10 +1,10 @@
-# LeetApps — leetapp.org
+# LeetApp — leetapp.org
 
-One-page website for **LeetApps**, an AI apps & games development studio.
+One-page website for **LeetApp**, an AI apps & games development studio.
 
 - Static HTML/CSS/JS, no build step
-- 8 languages: English, Français, Italiano, Português, Deutsch, 한국어, 中文, 日本語
-  (auto-detected from the browser, switchable from the header, shareable via `?lang=xx`)
+- 9 languages: English (default), Español, Français, Italiano, Português, Deutsch, 한국어, 中文, 日本語
+  (switchable from the header, remembered per visitor, shareable via `?lang=xx`)
 - Animated canvas background, live pixel-game demo in the hero, reduced-motion support
 - Hosted on GitHub Pages with the custom domain in `CNAME`
 
@@ -16,6 +16,7 @@ assets/css/style.css    styles
 assets/js/i18n.js       translations — edit copy here, one block per language
 assets/js/main.js       language switcher, animations, contact form (mailto)
 assets/img/             logo.svg, og.png (social share image), icon-180.png
+assets/work/            project showcase assets (sprites, parallax layers, screenshots)
 CNAME                   www.leetapp.org
 ```
 

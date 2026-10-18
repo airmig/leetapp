@@ -281,43 +281,56 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 .work-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .work h3 { font-size: 24px; }
 .work p { color: var(--muted); font-size: 15px; }
-.concept { display: inline-block; margin-top: 16px; font: 500 11px/1 var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(238,240,255,.45); }
 
-.w-lumen { background: radial-gradient(circle at 50% 110%, #8b5cff, transparent 60%), linear-gradient(160deg, #1d1440, #0a0a18); display: grid; place-items: center; }
-.phone { width: 150px; height: 250px; margin-top: 70px; padding: 14px 12px; border-radius: 26px; background: #0b0b16; border: 1px solid rgba(255,255,255,.18); box-shadow: 0 30px 60px rgba(0,0,0,.6); display: flex; flex-direction: column; gap: 8px; transition: transform .5s; }
-.work:hover .phone { transform: translateY(-14px); }
-.ph-bar { width: 46px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.2); margin: 0 auto 6px; }
-.ph-bubble { height: 26px; border-radius: 10px; }
-.ph-bubble.a { width: 80%; background: rgba(255,255,255,.1); }
-.ph-bubble.b { width: 70%; align-self: flex-end; background: linear-gradient(90deg, var(--violet), var(--blue)); }
-.ph-bubble.short { width: 55%; }
-.ph-wave { display: flex; align-items: center; justify-content: center; gap: 4px; height: 50px; margin-top: 4px; }
-.ph-wave i { width: 4px; border-radius: 2px; background: var(--cyan); animation: wave 1.1s ease-in-out infinite; height: 20%; }
-.ph-wave i:nth-child(2n) { animation-delay: -.3s; } .ph-wave i:nth-child(3n) { animation-delay: -.6s; background: var(--violet); }
-@keyframes wave { 50% { height: 90%; } }
+/* Work: Flerkin parallax scene (layers + 24-frame run cycle from the game's assets) */
+.work-wide { grid-column: span 2; }
+.work-wide .work-art { height: 340px; }
+.w-flerkin { background: #0d2a2c; isolation: isolate; }
+.px { position: absolute; left: 0; right: 0; background-repeat: repeat-x; background-size: auto 100%; animation: px-scroll linear infinite; }
+.px-far { top: -8%; bottom: -8%; background-image: url("../work/flerkin/far_forest.webp"); animation-duration: 90s; }
+.px-mid { bottom: 18%; height: 70%; background-image: url("../work/flerkin/mid_trees.webp"); background-size: auto 100%; animation-duration: 40s; opacity: .95; }
+.px-vine { top: -6%; height: 60%; background-image: url("../work/flerkin/vine_curtain.webp"); background-size: auto 100%; background-position: 0 0; animation-duration: 26s; opacity: .85; }
+.px-under { bottom: -4%; height: 42%; background-image: url("../work/flerkin/understory_band.webp"); background-size: auto 100%; animation-duration: 9s; z-index: 2; }
+/* --dist is one tile width, set by main.js so the loop is seamless */
+@keyframes px-scroll { to { background-position-x: var(--dist, -1200px); } }
+.w-flerkin::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(ellipse at 30% 10%, rgba(255,230,160,.18), transparent 55%), linear-gradient(180deg, transparent 60%, rgba(5,12,14,.55)); }
+.flerkin-run {
+  position: absolute; left: 38%; bottom: 9%; z-index: 1; width: 112px; height: 121px;
+  background: url("../work/flerkin/run.webp") 0 0 / 2688px 121px no-repeat;
+  animation: run-cycle .85s steps(24) infinite, run-bob 3.4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 6px rgba(0,0,0,.45));
+}
+@keyframes run-cycle { to { background-position-x: -2688px; } }
+@keyframes run-bob { 50% { transform: translateX(26px); } }
+.fireflies i { position: absolute; z-index: 3; width: 4px; height: 4px; border-radius: 50%; background: #e9ff9a; box-shadow: 0 0 10px 3px rgba(220,255,120,.7); animation: firefly 7s ease-in-out infinite; }
+.fireflies i:nth-child(1) { left: 12%; top: 40%; }
+.fireflies i:nth-child(2) { left: 26%; top: 22%; animation-delay: -2s; }
+.fireflies i:nth-child(3) { left: 58%; top: 34%; animation-delay: -4s; }
+.fireflies i:nth-child(4) { left: 72%; top: 52%; animation-delay: -1s; }
+.fireflies i:nth-child(5) { left: 86%; top: 26%; animation-delay: -5s; }
+.fireflies i:nth-child(6) { left: 46%; top: 60%; animation-delay: -3s; }
+@keyframes firefly { 0%, 100% { transform: translate(0, 0); opacity: .2; } 30% { opacity: 1; } 50% { transform: translate(14px, -18px); opacity: .9; } 80% { opacity: .3; } }
 
-.w-drift { background: linear-gradient(180deg, #12002e 0%, #3d0b5b 45%, #ff4fd8 62%, #120022 62.5%); }
-.sun { position: absolute; left: 50%; top: 18%; width: 150px; height: 150px; margin-left: -75px; border-radius: 50%;
-  background: linear-gradient(180deg, #ffe66d, #ff4fd8 80%);
-  mask-image: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px); -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 55%), repeating-linear-gradient(180deg, #000 0 10px, transparent 10px 15px);
-  box-shadow: 0 0 80px rgba(255,79,216,.6); }
-.road { position: absolute; left: -50%; right: -50%; bottom: 0; height: 38%; transform: perspective(200px) rotateX(55deg); transform-origin: bottom;
-  background-image: linear-gradient(rgba(34,211,238,.8) 2px, transparent 2px), linear-gradient(90deg, rgba(34,211,238,.8) 2px, transparent 2px);
-  background-size: 40px 30px; animation: road 1s linear infinite; }
-@keyframes road { to { background-position: 0 30px; } }
-.car { position: absolute; left: 50%; bottom: 14%; width: 70px; height: 26px; margin-left: -35px; border-radius: 8px 8px 4px 4px;
-  background: linear-gradient(180deg, #22d3ee, #6d28d9); box-shadow: 0 0 24px rgba(34,211,238,.8), -22px 18px 0 -10px #ff4fd8, 22px 18px 0 -10px #ff4fd8;
-  animation: sway 3s ease-in-out infinite; }
-@keyframes sway { 50% { transform: translateX(18px) rotate(2deg); } }
+/* Work: Sociedad M&D site scrolling inside a browser frame */
+.w-smyd { height: 340px; background: radial-gradient(circle at 50% 120%, rgba(34,197,94,.35), transparent 60%), linear-gradient(160deg, #0c1a2e, #08080f); display: flex; align-items: flex-end; justify-content: center; padding: 30px 24px 0; }
+.browser { width: 100%; height: 100%; border-radius: 12px 12px 0 0; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -10px rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.18); border-bottom: 0; display: flex; flex-direction: column; transition: transform .5s; }
+.work:hover .browser { transform: translateY(-6px); }
+.browser-bar { display: flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; background: #1b1b2a; flex-shrink: 0; }
+.browser-bar span { width: 8px; height: 8px; border-radius: 50%; background: #ff5f57; }
+.browser-bar span:nth-child(2) { background: #febc2e; } .browser-bar span:nth-child(3) { background: #28c840; }
+.browser-bar em { margin-left: 10px; padding: 2px 10px; border-radius: 6px; background: rgba(255,255,255,.08); font-style: normal; font-size: 10px; color: var(--muted); }
+.browser-view { position: relative; flex: 1; overflow: hidden; }
+.browser-view img { display: block; width: 100%; height: auto; animation: site-scroll 26s ease-in-out infinite alternate; }
+@keyframes site-scroll { 0%, 8% { transform: translateY(0); } 92%, 100% { transform: translateY(calc(-100% + 240px)); } }
 
-.w-relay { background: radial-gradient(circle at 70% 50%, rgba(34,211,238,.35), transparent 55%), linear-gradient(160deg, #061a24, #08080f); }
-.flow { position: absolute; inset: 40px 20px; }
-.flines { position: absolute; inset: 0; width: 100%; height: 100%; }
-.flines path { fill: none; stroke: rgba(34,211,238,.6); stroke-width: 1.5; stroke-dasharray: 5 6; animation: dash 1.2s linear infinite; }
-@keyframes dash { to { stroke-dashoffset: -22; } }
-.fnode { position: absolute; z-index: 1; display: grid; place-items: center; width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 14px; background: rgba(255,255,255,.07); border: 1px solid var(--line-2); backdrop-filter: blur(6px); font-size: 20px; color: #dff; }
-.n1 { left: 16.6%; top: 22%; } .n2 { left: 16.6%; top: 78%; } .n3 { left: 83.3%; top: 50%; }
-.hub { left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 20px; background: rgba(34,211,238,.12); border-color: rgba(34,211,238,.5); box-shadow: 0 0 40px rgba(34,211,238,.4); }
+.work-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
+.status { display: inline-flex; align-items: center; gap: 7px; font: 500 11px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(238,240,255,.6); }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #febc2e; box-shadow: 0 0 8px #febc2e; }
+.status.live::before { background: var(--lime); box-shadow: 0 0 8px var(--lime); }
+.stack { font-size: 11px; color: rgba(238,240,255,.45); }
+.visit { font-size: 14px; font-weight: 600; color: var(--cyan); }
+.visit:hover { text-decoration: underline; }
 
 /* Steps */
 .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; position: relative; }
@@ -364,8 +377,8 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
 @media (max-width: 1080px) {
   .hero-grid { grid-template-columns: 1fr; gap: 30px; }
   .hero-visual { height: 520px; max-width: 560px; width: 100%; margin-inline: auto; }
-  .work-grid { grid-template-columns: 1fr 1fr; }
-  .work-grid .work:last-child { grid-column: span 2; }
+  .work-grid { grid-template-columns: 1fr; }
+  .work-wide { grid-column: auto; }
   .steps { grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .steps::before { display: none; }
   .cta { grid-template-columns: 1fr; padding: 48px; gap: 36px; }
@@ -388,7 +401,8 @@ html[lang="ko"] h2, html[lang="zh"] h2, html[lang="ja"] h2 { line-height: 1.25; 
   .device { width: 300px; }
   .f-score { right: 0; top: 0; padding: 10px 12px; } .f-score b { font-size: 18px; } .f-model { left: 0; bottom: 4%; } .f-pad { right: 0; bottom: 18%; }
   .bento, .work-grid, .steps { grid-template-columns: 1fr; }
-  .work-grid .work:last-child { grid-column: auto; }
+  .work-wide .work-art, .w-smyd { height: 260px; }
+  .flerkin-run { transform-origin: bottom left; scale: .8; }
   .section { padding: 90px 0; }
   .card { padding: 24px; }
   .card-xl .card-body { padding: 22px 24px 26px; }

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var LANGS = ["en", "fr", "it", "pt", "de", "ko", "zh", "ja"];
+  var LANGS = ["en", "es", "fr", "it", "pt", "de", "ko", "zh", "ja"];
   var CJK_FONTS = { ko: "Noto+Sans+KR", zh: "Noto+Sans+SC", ja: "Noto+Sans+JP" };
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var dict = window.I18N || {};
@@ -15,16 +15,12 @@
   }
 
   /* ---------- i18n ---------- */
+  // English unless the visitor picked a language (link with ?lang= or the switcher).
   function detectLang() {
     var q = new URLSearchParams(location.search).get("lang");
     if (q && LANGS.indexOf(q) > -1) return q;
-    var s = stored("leetapps.lang");
+    var s = stored("leetapp.lang");
     if (s && LANGS.indexOf(s) > -1) return s;
-    var nav = navigator.languages || [navigator.language || "en"];
-    for (var i = 0; i < nav.length; i++) {
-      var code = String(nav[i]).toLowerCase().slice(0, 2);
-      if (LANGS.indexOf(code) > -1) return code;
-    }
     return "en";
   }
 
@@ -55,7 +51,7 @@
       b.setAttribute("aria-selected", b.getAttribute("data-lang") === lang ? "true" : "false");
     });
     if (persist) {
-      store("leetapps.lang", lang);
+      store("leetapp.lang", lang);
       var url = new URL(location.href);
       url.searchParams.set("lang", lang);
       history.replaceState(null, "", url);
@@ -130,6 +126,21 @@
     });
     visual.addEventListener("pointerleave", function () { device.style.transform = ""; });
   }
+
+  /* ---------- Work: seamless parallax loops ---------- */
+  // Each layer scrolls exactly one tile width, which depends on its rendered height.
+  function sizeParallax() {
+    document.querySelectorAll(".px").forEach(function (el) {
+      var url = getComputedStyle(el).backgroundImage.slice(5, -2);
+      var img = new Image();
+      img.onload = function () {
+        el.style.setProperty("--dist", -Math.round(img.naturalWidth * el.clientHeight / img.naturalHeight) + "px");
+      };
+      img.src = url;
+    });
+  }
+  sizeParallax();
+  window.addEventListener("resize", sizeParallax);
 
   /* ---------- Contact form (mailto) ---------- */
   var form = document.getElementById("contact-form");
